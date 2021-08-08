@@ -13,6 +13,7 @@ public class FeeDiscountPolicy implements DiscountPolicy{
     private List<DiscountCondition> conditions = new ArrayList<>();
 
     public FeeDiscountPolicy(Integer discountAmount, DiscountCondition... discountConditions) {
+        this.discountAmount = discountAmount;
         this.conditions = Arrays.asList(discountConditions);
     }
 

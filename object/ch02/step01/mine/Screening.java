@@ -1,5 +1,7 @@
 package com.sh.object.ch02.step01.mine;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
@@ -18,8 +20,8 @@ public class Screening {
         this.seats = seats;
     }
 
-    public Movie getMovie() {
-        return movie;
+    public BigDecimal getMovieFee() {
+        return BigDecimal.valueOf(this.movie.getFee());
     }
 
     public Integer getOrder() {
@@ -34,25 +36,36 @@ public class Screening {
         return seats;
     }
 
-    public Integer getFullPrice(Integer numbers){
+    public Integer originalMovieFee(Integer numbers) {
+        return this.movie.getFee() * numbers;
+    }
+
+    public BigInteger caculatePrice(Integer numbers){
         this.seats -= numbers;
-        return this.getMovie()() * numbers;
+        return this.movie.calculateMovieFee(this).multiply(BigDecimal.valueOf(numbers)).toBigInteger();
     }
 
     public String getTitle() {
         return this.movie.getTitle();
     }
 
+    public Integer getScreeningTime() {
+        return this.movie.getScreeningTime();
+    }
+
     public String getScreeningTimeInformation() {
         String dateTimeFormat = localDateTimeformat(this.showTime);
-        Integer screeningMinutes = this.movie.getScreeningTime();
-        String endOfTime = screeningEndOfTime(screeningMinutes);
+        String endOfTime = screeningEndOfTime();
         return dateTimeFormat + "~" + endOfTime;
     }
 
+    public LocalDateTime getEndOfShowTime() {
+        Integer minutes = getScreeningTime();
+        return this.showTime.plusMinutes(minutes);
+    }
 
-    private String screeningEndOfTime(Integer screeningMinutes) {
-        LocalDateTime endTime = this.showTime.plusMinutes(screeningMinutes);
+    private String screeningEndOfTime() {
+        LocalDateTime endTime = getEndOfShowTime();
         return hourAndMinuteformat(endTime);
     }
 
@@ -60,8 +73,6 @@ public class Screening {
         DateTimeFormatter hhMm = DateTimeFormatter.ofPattern("HH:mm");
         return localDateTime.format(hhMm);
     }
-
-
 
     private String localDateTimeformat(LocalDateTime localDateTime) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy년 MM월 dd일, HH:mm");

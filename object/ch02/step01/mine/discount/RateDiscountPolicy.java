@@ -31,7 +31,6 @@ public class RateDiscountPolicy implements DiscountPolicy {
 
     @Override
     public BigDecimal getDiscount(Screening screening) {
-        Integer fee = screening.getMovie().getFee();
-        return BigDecimal.valueOf(this.percent).multiply(BigDecimal.valueOf(fee));
+        return BigDecimal.valueOf(this.percent).multiply(screening.getMovieFee());
     }
 }
