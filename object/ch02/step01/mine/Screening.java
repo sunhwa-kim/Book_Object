@@ -36,7 +36,7 @@ public class Screening {
 
     public Integer getFullPrice(Integer numbers){
         this.seats -= numbers;
-        return this.getMovie().getFee() * numbers;
+        return this.getMovie()() * numbers;
     }
 
     public String getTitle() {
