@@ -6,11 +6,17 @@
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio, WebStorm and Rider
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
 
-# my
+### personal _ by sunhwa ###
+**/object/ch04/step01
+**/object/ch04/CH4_SUMMARY_mine.md
+javazz.md
+
 CH1_SUMMARY_mine.md
 CH2_SUMMARY_mine.md
+
 CH1_STUDY.md
 CH2_STUDY.md
+
 
 # User-specific stuff
 .idea/**/workspace.xml
@@ -170,3 +176,4 @@ modules.xml
 *.ipr
 
 # End of https://www.toptal.com/developers/gitignore/api/intellij,intellij+iml
+

@@ -101,5 +101,8 @@ public class Screening {
                 ", seats=" + seats +
                 '}';
     }
+
+    public Movie getMovie() {
+    }
 }
 
