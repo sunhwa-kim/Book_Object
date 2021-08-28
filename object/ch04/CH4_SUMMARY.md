@@ -20,5 +20,34 @@
 
 
 
+#### p.117 ~ my_step02
 
+* 앞 부분은 데이터 중심 설계 차이를 알아보고자, 교재 대로 학습
+* step01에서의 코드를 interface 등을 쓰지 않고 코드 자체에서만 수정해보기
+
+* DiscountCondition
+    * 일단, ReservationAgency의 Movie에서 DiscountCondition 꺼내는 걸 줄여보자
+        * Movie 가 조건 책임지게 수정 -> 객체가 책임 : DiscountCondition
+
+* Movie
+    * ReservationAgency의 Movie는 영화 한 표당 가격계산시 필요
+        * Movie가 조건에 따라 영화 티켓 한 장의 가격 계산
+        * ReservationAgency는 결과만 받게 수정
+    * isDiscountable(screening)
+        * 조건을 맞춰 할인 여부 로직이 해당 메서드의 책임이라면, Screening을 보내야 한다고 생각
+            * Movie의 많은 데이터를 공개하는 코드가 없어졌다.
+        * But, Movie와 Screening간 강한 결합력
+            * 앞의 챕터가 아른아른
+        * 교재에서 데이터 중심의 작업이 이해되기 시작, 가진 데이터 중심으로 행동하도록 작업하게 되어있었다.
+
+* Screening
+    * 인원수에 따른 조건에 맞춘 가격 계산
+
+
+
+* Movie와 DiscountCondition 간의 결합도
+    * 할인 조건 명칭 변경시
+    * 할인 조건 종류 추가/삭제시 if-else 구문 수정
+    * isDiscountable에 필요한 정보 변경시 파라미터 변경 - DiscountCondition, Movie, Screening 모두 변경
+        * 내 코드는 2개만 변경 ㅎㅎ
 
