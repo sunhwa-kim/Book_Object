@@ -20,8 +20,6 @@
 ---
 
 
-* ch04는 개인적으로 캡슐화, 데이터 중심으로 설계와 변경 차이(리팩토링) 학습
-
 
 ## 01. 책임 주도 설계를 향해
 
@@ -220,26 +218,6 @@ p.146
 <br>
 
 #### DiscountCondition 개선하기
-
-``` java
-    public boolean isSatisfiedBy(Screening screening) {
-        if (type == DiscountConditionType.PERIOD) {
-            return isSatisfiedByPeriod(screening);
-        }
-
-        return isSatisfiedBySequence(screening);
-    }
-
-    private boolean isSatisfiedByPeriod(Screening screening) {
-        return dayOfWeek.equals(screening.getWhenScreened().getDayOfWeek()) &&
-                startTime.compareTo(screening.getWhenScreened().toLocalTime()) <= 0 &&
-                endTime.compareTo(screening.getWhenScreened().toLocalTime()) <= 0;
-    }
-
-    private boolean isSatisfiedBySequence(Screening screening) {
-        return sequence == screening.getSequence();
-    }
-```
 
 
 * 변경에 취약한 클래스 : 수정해야 하는 이유를 하나 이상 가지는 클래스(낮은 응집도) ↔️ SRP
