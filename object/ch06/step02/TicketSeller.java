@@ -11,8 +11,8 @@ public class TicketSeller {
 
     }
 
-    public void setTicket(Audience audience) {
+    public void sellTo(Audience audience) {
         this.plusAmount(getTicket().getFee());
-        audience.setTicket(getTicket());
+        audience.buy(getTicket());
     }
 }

@@ -410,7 +410,11 @@ Tell, Don's Ask.
   }
 ```
 
+[sunhwa-git](https://github.com/sunhwa-kim/Book_Object/tree/main/object/ch06/step02)
+
 #### 묻지 말고 시켜라
+<br>
+
 * 조건분기문 로직의 공통 결과 audience.setTicket(ticket);
   * ticketSeller.getTicket();
     * ticket 가진 TicketSeller에게 위임
@@ -426,4 +430,19 @@ Tell, Don's Ask.
       * hasInvitation()
       * minusAmount()
 
-  
+<br>
+
+#### 인터페이스에 의도를 드러내자
+
+ * 동일한 메서드명 setTicket() 모두 같은 역할?
+   * ticketSeller.setTicket(audience);
+     * 판매역할
+     * ticketSeller.sellTo(audience);
+   * audience.setTicket(getTicket());
+     * 구매역할
+     * audience.buy(getTicket());
+   * bag.setTicket(ticket);
+     * 결제,.. 보관
+     * Audience 안의 bag은 보관 - 클라이언트 의도
+     * bag.hold(ticket);
+     

@@ -7,8 +7,8 @@ public class Audience {
         this.bag = bag;
     }
 
-    public void setTicket(Ticket ticket) {
-        bag.setTicket(ticket);
+    public void buy(Ticket ticket) {
+        bag.hold(ticket);
     }
 
 

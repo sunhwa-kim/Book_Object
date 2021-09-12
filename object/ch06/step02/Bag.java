@@ -5,7 +5,7 @@ public class Bag {
         return true;
     }
 
-    public void setTicket(Ticket ticket) {
+    public void hold(Ticket ticket) {
         if(hasInvitation()){
 
         }else{
