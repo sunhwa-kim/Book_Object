@@ -10,4 +10,8 @@ public class TicketSeller {
     public void plusAmount(Integer fee) {
 
     }
+
+    public void setTicket(Audience audience) {
+        audience.setTicket(getTicket());
+    }
 }

@@ -386,3 +386,37 @@ Tell, Don's Ask.
 > 실제 예를 참고하며 원칙 위반 코드들을 살펴보자.
 
 * ch01 - Theater
+* Theater 를 시작으로 수정하며 , 클래스 분리하고, 객체 지향적 프로그래밍 실습하기
+  * 협력관계하 메시지 중심으로 보고자, 일단 세부 구현은 패스 - 실행X
+``` java
+  public class Theater {
+      private TicketSeller ticketSeller;
+  
+      public Theater(TicketSeller ticketSeller) {
+          this.ticketSeller = ticketSeller;
+      }
+  
+      public void enter(Audience audience) {
+          if (audience.getBag().hasInvitation()) {
+              Ticket ticket = ticketSeller.getTicketOffice().getTicket();
+              audience.getBag().setTicket(ticket);
+          } else {
+              Ticket ticket = ticketSeller.getTicketOffice().getTicket();
+              audience.getBag().minusAmount(ticket.getFee());
+              ticketSeller.getTicketOffice().plusAmount(ticket.getFee());
+              audience.getBag().setTicket(ticket);
+          }
+      }
+  }
+```
+
+#### 묻지 말고 시켜라
+* 조건분기문 로직의 공통 결과 audience.setTicket(ticket);
+  * ticketSeller.getTicket();
+    * ticket 가진 TicketSeller에게 위임
+    * ticket이 필요한 객체? Audience
+      * TicketSeller가 Audience에게 ticket 전달
+
+``` java
+  ticketSeller.setTicket(audience);
+```
