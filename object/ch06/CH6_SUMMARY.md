@@ -416,7 +416,14 @@ Tell, Don's Ask.
     * ticket 가진 TicketSeller에게 위임
     * ticket이 필요한 객체? Audience
       * TicketSeller가 Audience에게 ticket 전달
-
 ``` java
   ticketSeller.setTicket(audience);
 ```
+<br>
+
+  * Audience
+    * Bag에게 묻지 말고 시키기
+      * hasInvitation()
+      * minusAmount()
+
+  

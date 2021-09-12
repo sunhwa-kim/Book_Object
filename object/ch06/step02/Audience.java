@@ -1,24 +1,15 @@
 package com.sh.object.ch06.step02;
 
 public class Audience {
+    private Bag bag;
 
-
-    public boolean hasInvitation() {
-        return true;
+    public Audience(Bag bag) {
+        this.bag = bag;
     }
+
     public void setTicket(Ticket ticket) {
-        if (this.hasInvitation()) {
-            Ticket ticket = ticketSeller.getTicket();
-            this.setTicket(ticket);
-        } else {
-            Ticket ticket = ticketSeller.getTicket();
-            this.minusAmount(ticket.getFee());
-            ticketSeller.plusAmount(ticket.getFee());
-            this.setTicket(ticket);
-        }
+        bag.setTicket(ticket);
     }
 
-    public void minusAmount(Integer fee) {
 
-    }
 }

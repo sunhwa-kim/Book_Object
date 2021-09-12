@@ -12,6 +12,7 @@ public class TicketSeller {
     }
 
     public void setTicket(Audience audience) {
+        this.plusAmount(getTicket().getFee());
         audience.setTicket(getTicket());
     }
 }
