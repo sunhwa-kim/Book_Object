@@ -387,7 +387,10 @@ Tell, Don's Ask.
 
 * ch01 - Theater
 * Theater 를 시작으로 수정하며 , 클래스 분리하고, 객체 지향적 프로그래밍 실습하기
-  * 협력관계하 메시지 중심으로 보고자, 일단 세부 구현은 패스 - 실행X
+  * 협력관계하 메시지 중심으로 보고자, 일단 세부 구현은 패스 - 실행X  
+  * [sunhwa-git](https://github.com/sunhwa-kim/Book_Object/tree/main/object/ch06/step02)
+
+
 ``` java
   public class Theater {
       private TicketSeller ticketSeller;
@@ -410,7 +413,7 @@ Tell, Don's Ask.
   }
 ```
 
-[sunhwa-git](https://github.com/sunhwa-kim/Book_Object/tree/main/object/ch06/step02)
+
 
 #### 묻지 말고 시켜라
 <br>
@@ -446,3 +449,72 @@ Tell, Don's Ask.
      * Audience 안의 bag은 보관 - 클라이언트 의도
      * bag.hold(ticket);
      
+
+<br>
+
+## 03. 원칙의 함정
+
+> 소프트웨어 설계에 법칙이란 존재하지 않는다.
+> 
+
+### 03-1. 디미터 법칙은 하나의 도트(.)를 강제하는 규칙이 아니다.
+
+ ⁉️기차 충동로 디비터 법칙을 위반 하는가?
+``` java
+  IntStream.of(1, 15, 20, 3, 9).filter(x -> x >10).distinct().count();
+```
+  
+ * No
+   * IntStream 동일한 클래스의 인스턴스 반환
+   * 내부 구조가 외부로 노출 X
+   * 묻지 않고 또다른 IntStream 인스턴스로 변환 시킬뿐 (Tell, Don't Ask)
+
+
+### 03-2. 결합도와 응집도의 충돌
+
+ ⁉  Screening의 내부 상태 가져와서 사용하기 때문에, 캡슐화 위반?
+``` java
+  public class PeriodCondtion implements DiscountCondition {
+      public boolean isSatisfiedBy(Screening screening) {
+          return dayOfWeek.equals(screening.getWhenScreened().getDayOfWeek()) &&
+                startTime.compareTo(screening.getWhenScreened().toLocalTime()) <= 0 &&
+                endTime.compareTo(screening.getWhenScreened().toLocalTime()) <= 0;
+      }
+  }
+```
+
+  * 그렇다면 screening.isDiscountale(dayOfWeek, startTime, endTime); 이 옳을까? 
+    * 응집도 낮아진다.
+      * WHO? 할인 조건 판단 책임
+      * Screening : 영화 예매
+
+#### 묻는 것 외에는 다른 방법이 존재하지 않는 경우도 존재한다.
+
+> 로버트 마틴 "클린코드"
+> 디미터 법칙 위반 여부는 묻는 대상이 객체인지, 자료구조인지에 달려있다.
+
+<br>
+
+## 04. 명령-쿼리 분리 원칙 ⭐
+Command-Query Separation Principal
+
+> 가끔 필요에 따라 물어야 한다. <br>
+> 퍼블릭 인터페이스 설계시 부수효과를 가지는 대신 값을 반환하지 않는 명령과, 부수효과를 가지지 않는 대신 값을 반환하는 쿼리를 분리하기 바란다.
+
+
+* 루틴 routine : 절차를 묶어 호출 가능하도록 이름 부여한 기능 모듈
+  * 부수효과, 반환값 유무 측면
+    * 프로시저 procedure : 정해진 절차에 따라 내부 상태를 변경 
+      * 객체의 인터페이스 측면 = 명령
+        * 부수효과 발생 시킬수 있지만 값을 반환할 수 없다.
+    * 함수 function : 어떤 절차에 따라 필요한 값 계산해서 반환
+      * 객체의 인터페이스 측면 = 쿼리
+        * 값을 반환할 수 있지만, 부수효과를 발생시킬 수 없다.
+		
+	
+		
+[ 이미치 참고 ](https://velog.io/@potato_song/%EA%B0%9D%EC%B2%B4-%EC%A7%80%ED%96%A5%EA%B3%BC-%EB%94%94%EC%9E%90%EC%9D%B8-%ED%8C%A8%ED%84%B4-%EC%9D%B8%ED%88%AC%EB%B6%81%EC%8A%A4)
+<br>
+<img src="https://user-images.githubusercontent.com/66774973/134091210-c3126c5e-dc8e-4033-877d-3e11949a9387.PNG" width="450">
+<br>
+<img src="https://user-images.githubusercontent.com/66774973/134091239-b9a57fcc-00d9-433a-aa10-78969b843982.PNG" width="450">
