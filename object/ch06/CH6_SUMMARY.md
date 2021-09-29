@@ -15,7 +15,7 @@
 * 2021.08.09 ~ 08.15 : chapter 02 by ksh
 * 2021.08.16 ~ 08.22 : chapter 03, 04 by ksh
 * 2021.08.23 ~ 08.29 : chapter 05 by ksh
-* 2021.08.30 ~ 09.12 : chapter 06, 07 by ksh
+* 2021.08.30 ~ 09.12 : chapter 06 ksh
 
 
 ---
